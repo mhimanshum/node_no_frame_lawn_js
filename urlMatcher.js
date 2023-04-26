@@ -1,11 +1,13 @@
+const { ServerError } = require('./error');
 const { run } = require('./runner');
 
 // TODO: query matcher not implemented
 exports.urlMatcher = (matchUrl, method, ...controllers) => {
   return async (req, res, data) => {
     if (matchUrl === '*' || method === '*') {
-      throw new ServerError(404, 'route not found');
+      throw new ServerError(404, 'route not found')
     }
+
     if (req.method !== method) {
       return { ...data, next: true };
     }
@@ -30,10 +32,9 @@ exports.urlMatcher = (matchUrl, method, ...controllers) => {
       }
     }
     if (!isMatched) {
-      return { ...data, next: true };
+      return { ...data, next: true, };
     }
     req.params = params;
-    data = await run(controllers, req, res);
-    return { next: true, data };
+    return await run(controllers, req, res);
   };
 };

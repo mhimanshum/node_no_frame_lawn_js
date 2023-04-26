@@ -4,19 +4,31 @@
       "name": "apple",
       "password": "pFTtYFoLecxJCmSBpOUqodHjCcCwYmLT9w11cgOQ.lW1uc7INTy3lDnPS17KFfdBMr7FsRQ8t1cCWGptyE0pdUT4AIv1iqv5vhqbEjcgczX5f6Kv//q42aLuDT6CbGi0Vs+BN07FJPhKTl9sI7ln4ZjS1Q8+aJu0x",
       "role": "admin"
+    },
+    "b@b.com": {
+      "name": "banana",
+      "password": "pFTtYFoLecxJCmSBpOUqodHjCcCwYmLT9w11cgOQ.lW1uc7INTy3lDnPS17KFfdBMr7FsRQ8t1cCWGptyE0pdUT4AIv1iqv5vhqbEjcgczX5f6Kv//q42aLuDT6CbGi0Vs+BN07FJPhKTl9sI7ln4ZjS1Q8+aJu0x",
+      "role": "m1"
+    },
+    "c@c.com": {
+      "name": "chiku",
+      "password": "pFTtYFoLecxJCmSBpOUqodHjCcCwYmLT9w11cgOQ.lW1uc7INTy3lDnPS17KFfdBMr7FsRQ8t1cCWGptyE0pdUT4AIv1iqv5vhqbEjcgczX5f6Kv//q42aLuDT6CbGi0Vs+BN07FJPhKTl9sI7ln4ZjS1Q8+aJu0x",
+      "role": "m2",
+      "address": "kjjhsdvchsvchvcsdhcvdfv",
+      "phone": "dhjfvhgd"
     }
   },
   "users": {
     "c@c.com": {
       "name": "kiwi",
-      "password": "123456",
+      "password": "pFTtYFoLecxJCmSBpOUqodHjCcCwYmLT9w11cgOQ.lW1uc7INTy3lDnPS17KFfdBMr7FsRQ8t1cCWGptyE0pdUT4AIv1iqv5vhqbEjcgczX5f6Kv//q42aLuDT6CbGi0Vs+BN07FJPhKTl9sI7ln4ZjS1Q8+aJu0x",
       "phone": 9578465487,
       "altPhone": 9578465487,
       "address": "khamaria"
     },
-    "k@K.com": {
-      "name": "Himanshu Maurya",
-      "password": "v4FxizUlWJCcEPo3Yiv9swM7ojzwdutg0iadVT84.m+fB0s2WKbU2795H3BDKCn6cz9CXN2GpkMm63K0f+JhSu2rDB0oGUyX9wPcNag7x2D/hVt+x7krY2QOj+X3e1PmqtUyQtbP4g7kmSCYMaTiKT9Zf2CrEeS8U"
+    "k@k.com": {
+      "name": "shjsdvcsh",
+      "password": "05YqvZl4F/YRE1I58XdOTZIUm8BOG2Eb8thYTcZ+.tSwGGNRAw6AGXyCW8YoZ1Sg4+QTvwpsugSdYD4c5xyHG6/YH5wBgLsqkXVro3bHRHPIWyoA1tqwm03FFrBBKV8JDrhATPMlidQWt8edv4z2eusknu2/E1RHW"
     }
   },
   "categories": [
@@ -85,6 +97,7 @@
     { "id": 36, "cid": 13, "name": "bone chini plate", "price": 40 },
     { "id": 37, "cid": 13, "name": "plastic chamach", "price": 1 },
     { "id": 38, "cid": 13, "name": "lkdi chamach", "price": 2 },
-    { "id": 39, "cid": 13, "name": "tissue paper", "price": 0.5 }
+    { "id": 39, "cid": 13, "name": "tissue paper", "price": 0.5 },
+    { "id": 40, "name": " daal", "price": 100, "cid": 1 }
   ]
 }

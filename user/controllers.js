@@ -31,9 +31,6 @@ exports.userSignup = async (req, res, data) => {
     password: hashedPassword
   }
   await writeFile(dbData)
-  res.writeHead(200, {
-    'Content-Type': 'application/json',
-  });
   res.end(JSON.stringify({ message: "signup successful" }))
 }
 
@@ -69,9 +66,6 @@ exports.userLogin = async (req, res, data) => {
     iat: Date.now()
   })
 
-  res.writeHead(200, {
-    'Content-Type': 'application/json',
-  });
   res.end(JSON.stringify({ message: "login successful", token }))
 }
 
@@ -86,9 +80,6 @@ exports.userProfile = async (req, res, data) => {
   if (!userData) {
     throw new ServerError(404, 'user not found')
   }
-  res.writeHead(200, {
-    'Content-Type': 'application/json',
-  });
   delete userData.password
   res.end(JSON.stringify(userData))
 }
@@ -112,9 +103,6 @@ exports.userUpdateProfile = async (req, res, data) => {
 
   await writeFile(dbData)
 
-  res.writeHead(200, {
-    'Content-Type': 'application/json',
-  });
   delete userData.password
   res.end(JSON.stringify(userData))
 }

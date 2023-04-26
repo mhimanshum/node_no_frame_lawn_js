@@ -22,6 +22,19 @@ const {
   updateEmployeeProfile,
 } = require('./emploies/controllers');
 const { cors } = require('./cors');
+const {
+  createCategory,
+  getCategories,
+  updateCategory,
+  deleteCategory,
+} = require('./categories/controller');
+
+const {
+  createAsset,
+  getAssets,
+  deleteAsset,
+  updateAsset,
+} = require('./assets/controller');
 
 const globalMiddleware = [
   bodyPraser,
@@ -57,18 +70,71 @@ const globalMiddleware = [
   urlMatcher('/emploies/profile', 'GET', authentication, myProfile),
   urlMatcher('/emploies/profile', 'PATCH', authentication, updateMyProfile),
   urlMatcher(
-    '/emploies/profile',
-    'GET',
+    '/emploies/profile/admin',
+    'POST',
     authentication,
     employeeAuthorization('admin'),
     employeeProfile,
   ),
   urlMatcher(
-    '/emploies/profile',
+    '/emploies/profile/admin',
     'PATCH',
     authentication,
     employeeAuthorization('admin'),
     updateEmployeeProfile,
+  ),
+
+  // category
+  urlMatcher(
+    '/categories',
+    'POST',
+    authentication,
+    employeeAuthorization('admin'),
+    createCategory,
+  ),
+  urlMatcher('/categories', 'GET', getCategories),
+  urlMatcher(
+    '/categories/:id',
+    'PATCH',
+    authentication,
+    employeeAuthorization('admin', 'm1'),
+    updateCategory,
+  ),
+  urlMatcher(
+    '/categories',
+    'DELETE',
+    authentication,
+    employeeAuthorization('admin', 'm1'),
+    deleteCategory,
+  ),
+  urlMatcher('/categories', 'GET', authentication, getCategories),
+  urlMatcher(
+    '/assets',
+    'POST',
+    authentication,
+    employeeAuthorization('admin'),
+    createAsset,
+  ),
+  urlMatcher(
+    '/assets/:id',
+    'PATCH',
+    authentication,
+    employeeAuthorization('admin', 'm1'),
+    updateAsset,
+  ),
+  urlMatcher(
+    '/assets/:cid',
+    'GET',
+    authentication,
+    employeeAuthorization('admin'),
+    getAssets,
+  ),
+  urlMatcher(
+    '/assets',
+    'DELETE',
+    authentication,
+    employeeAuthorization('admin'),
+    deleteAsset,
   ),
 
   // not found
@@ -79,9 +145,7 @@ const server = http.createServer(async (req, res) => {
   try {
     await run(globalMiddleware, req, res);
   } catch (e) {
-    res.writeHead(e.code ? e.code : 500, {
-      'Content-Type': 'application/json',
-    });
+    res.statusCode = e.code ? e.code : 500;
     res.end(JSON.stringify({ error: e.message }));
   }
 });
