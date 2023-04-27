@@ -74,42 +74,35 @@ exports.getAssets = async (req, res, data) => {
 };
 
 exports.updateAsset = async (req, res, data) => {
-  const intId = parseInt(req.params.id);
-  if (isNaN(intId)) {
-    throw new ServerError(400, 'invalid category id supplied');
+  const idStr = req.params.id;
+  const id = parseInt(idStr);
+  if (isNaN(id)) {
+    throw new ServerError(400, 'asset id is invalid');
   }
 
-  if (!req.body.name) {
-    throw new ServerError(400, 'name not supplied');
+  const priceFloat = parseFloat(req.body.price);
+
+  if (req.body.price && isNaN(priceFloat)) {
+    throw new ServerError(400, 'asset price is invalid');
   }
 
-  const dbdata = await readFile();
-
-  // check duplicate category name
+  const dbData = await readFile();
   let i = 0;
-  for (i = 0; dbdata.assets.length > i; i++) {
-    if (dbdata.assets[i].name.toLowerCase() === req.body.name.toLowerCase()) {
-      throw new ServerError(400, 'category already exists');
-    }
-  }
-
-  let isUpdated = false;
-  for (i = 0; i < dbdata.assets.length; i++) {
-    if (dbdata.assets[i].id === intId) {
-      dbdata.assets[i].name = req.body.name;
-      dbdata.assets[i].price = req.body.price;
-      isUpdated = true;
+  for (i = 0; i < dbData.assets.length; i++) {
+    if (dbData.assets[i].id === id) {
+      dbData.assets[i].name = req.body.name
+        ? req.body.name
+        : dbData.assets[i].name;
+      dbData.assets[i].price = req.body.price
+        ? priceFloat
+        : dbData.assets[i].price;
       break;
     }
   }
 
-  if (!isUpdated) {
-    throw new ServerError(404, 'category id not found');
-  }
+  await writeFile(dbData);
 
-  await writeFile(dbdata);
-
-  res.end(JSON.stringify({ ...dbdata.categories[i] }));
+  res.end(JSON.stringify(dbData.assets[i]));
 };
 
 exports.deleteAsset = async (req, res, data) => {
